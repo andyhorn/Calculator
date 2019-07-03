@@ -23,7 +23,7 @@ public:
 	void Add(T& item);
 	T& Get(long index);
 	void Put(T item, long index);
-	T Remove(long index);
+	//T Remove(long index);
 
 	long GetCapacity();
 };

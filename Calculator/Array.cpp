@@ -105,23 +105,23 @@ void Array<T>::Put(T item, long index) {
 	this->operator[](index) = item;
 }
 
-template <class T>
-T Array<T>::Remove(long index) {
-	// Get a copy of the item
-	T item = this[index];
-
-	// Starting with the index of the item removed,
-	// move each item up one index in the array
-	for (int i = index; i < m_capacity - 1; i++) {
-		m_data[i] = m_data[i + 1];
-	}
-
-	// Delete the last item and decrement the 'used' counter
-	delete m_data[m_capacity - 1];
-
-	// Return the item
-	return item;
-}
+//template <class T>
+//T Array<T>::Remove(long index) {
+//	// Get a copy of the item
+//	T item = this->operator[](index);
+//
+//	// Starting with the index of the item removed,
+//	// move each item up one index in the array
+//	for (int i = index; i < m_capacity - 1; i++) {
+//		m_data[i] = m_data[i + 1];
+//	}
+//
+//	// Delete the last item and decrement the 'used' counter
+//	delete m_data[m_capacity - 1];
+//
+//	// Return the item
+//	return item;
+//}
 
 template <class T>
 long Array<T>::GetCapacity() {

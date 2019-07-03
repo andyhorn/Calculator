@@ -114,24 +114,64 @@ namespace CalculatorTest
 			}
 		}
 
-		TEST_METHOD(Array_GetTest)
-		{
+		TEST_METHOD(Array_GetTest) {
 			try {
 				Array<int> arr(10);
-				int val_one = 100;
-				int val_two = 200;
+				int val = 100;
+				int index = 0;
+				arr[index] = val;
 
-				arr[0] = val_one;
+				int retrieved = arr.Get(index);
 
-				int retrieved = arr.Get(0);
-
-				retrieved = val_two;
-
-				Assert::AreEqual(val_two, arr[0]);
+				Assert::AreEqual(val, retrieved);
 			}
 			catch (...) {
 				Assert::Fail();
 			}
+		}
+
+		TEST_METHOD(Array_PutTest) {
+			try {
+				Array<int> arr(10);
+				int val = 100;
+				int index = 0;
+
+				arr.Put(val, index);
+
+				int retrieved = arr[index];
+
+				Assert::AreEqual(val, retrieved);
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+		}
+
+		//TEST_METHOD(Array_RemoveTest) {
+		//	try {
+		//		int capacity = 10;
+		//		Array<int> arr(capacity);
+
+		//		for (int i = 0; i < capacity; i++)
+		//		{
+		//			arr[i] = i;
+		//		}
+
+		//		arr.Remove(9);
+
+		//		Assert::AreNotEqual(9, arr[9]);
+		//	}
+		//	catch (...) {
+		//		Assert::Fail();
+		//	}
+		//}
+
+		TEST_METHOD(Array_GetCapacityTest)
+		{
+			int capacity = 10;
+			Array<int> arr(capacity);
+
+			Assert::AreEqual(capacity, (int)arr.GetCapacity());
 		}
 
 	};
