@@ -4,15 +4,11 @@ template <class T>
 Array<T>::Array() {
 	m_data = nullptr;
 	m_capacity = 0;
-	//m_used = 0;
-	//m_available = 0;
 }
 
 template <class T>
 Array<T>::Array(long capacity) {
 	m_capacity = capacity;
-	//m_used = 0;
-	//m_available = capacity;
 
 	m_data = new T[capacity];
 }
@@ -36,30 +32,22 @@ void Array<T>::empty() {
 	}
 
 	m_capacity = 0;
-	//m_available = 0;
-	//m_used = 0;
 }
 
 template <class T>
 void Array<T>::set_size(long capacity) {
 	T* temp = new T[capacity];
 
-	for (int i = 0; i < capacity; i++) {
-		temp[i] = m_data[i];
+	for (int i = 0; i < m_capacity; i++) {
+		T val = m_data[i];
+		temp[i] = val;
 	}
 
 	empty();
 
 	m_data = temp;
 	m_capacity = capacity;
-	//m_used = count_used();
-	//m_available = Available();
 }
-
-//template <class T>
-//long Array<T>::count_used() {
-//
-//}
 
 template <class T>
 T* Array<T>::m_get_data() {
@@ -77,45 +65,44 @@ T& Array<T>::operator[](long index){
 }
 
 template <class T>
-void Array<T>::operator=(T& right) {
+void Array<T>::operator=(Array<T>& right) {
 	empty();
 
-	m_capacity = right.Capacity();
-	//m_used = right.Used();
-	//m_available = right.Available();
+	m_capacity = right.GetCapacity();
 
 	T* temp = right.m_get_data();
 
 	m_data = new T[m_capacity];
 
 	for (int i = 0; i < m_capacity; i++) {
-		m_data[i] = temp[i];
+		T val = temp[i];
+		m_data[i] = val;
 	}
 }
 
 template <class T>
-void Array<T>::Add(T item) {
+void Array<T>::Add(T& item) {
 	if (m_data == nullptr) {
-		m_data = item;
+		m_data = new T[1];
+		m_data[0] = item;
 		m_capacity = 1;
 		//m_used = 1;
 		//m_available = 0;
 	}
 	else {
 		set_size(m_capacity + 1);
-		//m_data[m_used++] = item;
-		Put(item, m_capacity);
+		Put(item, m_capacity - 1);
 	}
 }
 
 template <class T>
 T& Array<T>::Get(long index) {
-	return this[index];
+	return this->operator[](index);
 }
 
 template <class T>
 void Array<T>::Put(T item, long index) {
-	this[index] = item;
+	this->operator[](index) = item;
 }
 
 template <class T>
@@ -123,16 +110,14 @@ T Array<T>::Remove(long index) {
 	// Get a copy of the item
 	T item = this[index];
 
-	//T* temp = new T[m_capacity - 1];
-
 	// Starting with the index of the item removed,
 	// move each item up one index in the array
 	for (int i = index; i < m_capacity - 1; i++) {
 		m_data[i] = m_data[i + 1];
 	}
 
-	// Delete the last time and decrement the 'used' counter
-	delete m_data[used--];
+	// Delete the last item and decrement the 'used' counter
+	delete m_data[m_capacity - 1];
 
 	// Return the item
 	return item;
@@ -142,14 +127,3 @@ template <class T>
 long Array<T>::GetCapacity() {
 	return m_capacity;
 }
-
-//template <class T>
-//long Array<T>::GetUsed() {
-//	m_used = count_used();
-//	return m_used;
-//}
-//
-//template <class T>
-//long Array<T>::GetAvailable() {
-//	m_available = m_capacity - GetUsed();
-//}

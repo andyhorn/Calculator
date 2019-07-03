@@ -10,7 +10,6 @@ private:
 
 	void empty();
 	void set_size(long capacity);
-	//long count_used();
 protected:
 	T* m_get_data();
 public:
@@ -19,14 +18,12 @@ public:
 	~Array();
 
 	T& operator[](long index);
-	void operator=(T& right);
+	void operator=(Array<T>& right);
 
-	void Add(T item);
+	void Add(T& item);
 	T& Get(long index);
 	void Put(T item, long index);
 	T Remove(long index);
 
 	long GetCapacity();
-	//long GetUsed();
-	//long GetAvailable();
 };
