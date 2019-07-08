@@ -4,13 +4,12 @@
 
 class Calculator {
 private:
-	Array<int>* m_int_array;
-	Array<double>* m_double_array;
+	Array<int>* m_get_digits(int num);
 public:
 	Calculator();
 	~Calculator();
 
-	Primes();
-	SumOfSquares();
-	SquareOfSums();
+	Array<int>* Primes(int start, int end);
+	Array<int>* SumOfSquares(int start, int end);
+	Array<int>* SquareOfSums(int start, int end);
 };

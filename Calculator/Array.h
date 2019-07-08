@@ -5,8 +5,6 @@ class Array {
 private:
 	T* m_data;
 	long m_capacity;
-	long m_used;
-	long m_available;
 
 	void empty();
 	void set_size(long capacity);
@@ -20,10 +18,9 @@ public:
 	T& operator[](long index);
 	void operator=(Array<T>& right);
 
-	void Add(T& item);
+	void Add(T item);
 	T& Get(long index);
 	void Put(T item, long index);
-	//T Remove(long index);
 
 	long GetCapacity();
 };
