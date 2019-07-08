@@ -201,7 +201,7 @@ namespace CalculatorTest
 
 				arr.Add(val);
 
-				Assert::AreEqual(1, (int)arr.GetCapacity());
+				Assert::AreEqual(1, (int)arr.Length());
 			}
 			catch (...)
 			{
@@ -215,11 +215,11 @@ namespace CalculatorTest
 			{
 				Array<int> arr(10);
 				int val = 100;
-				int cap = arr.GetCapacity();
+				int cap = arr.Length();
 
 				arr.Add(val);
 
-				int newCap = arr.GetCapacity();
+				int newCap = arr.Length();
 				int retrieved = arr[newCap - 1];
 
 				Assert::AreEqual(newCap, cap + 1);
@@ -294,7 +294,7 @@ namespace CalculatorTest
 			int capacity = 10;
 			Array<int> arr(capacity);
 
-			Assert::AreEqual(capacity, (int)arr.GetCapacity());
+			Assert::AreEqual(capacity, (int)arr.Length());
 		}
 
 	};

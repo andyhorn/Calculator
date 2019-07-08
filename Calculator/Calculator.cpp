@@ -38,7 +38,7 @@ Array<int>* Calculator::SumOfSquares(int start, int end) {
 	for (int i = start; i <= end; i++) {
 		Array<int>* digits = m_get_digits(i);
 
-		for (int j = 0; j < digits->GetCapacity(); j++) {
+		for (int j = 0; j < digits->Length(); j++) {
 			int val = (*digits)[j];
 
 			sum += val * val;
@@ -63,7 +63,7 @@ Array<int>* Calculator::SquareOfSums(int start, int end) {
 		sum = 0;
 		square = 0;
 
-		for (int j = 0; j < digits->GetCapacity(); j++) {
+		for (int j = 0; j < digits->Length(); j++) {
 			sum += (*digits)[j];
 		}
 

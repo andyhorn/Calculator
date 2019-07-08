@@ -3,14 +3,16 @@
 template <class T>
 Array<T>::Array() {
 	m_data = nullptr;
-	m_capacity = 0;
+	//m_capacity = 0;
+	m_length = 0;
 }
 
 template <class T>
-Array<T>::Array(long capacity) {
-	m_capacity = capacity;
+Array<T>::Array(long length) {
+	//m_capacity = capacity;
+	m_length = length;
 
-	m_data = new T[capacity];
+	m_data = new T[length];
 }
 
 template <class T>
@@ -21,7 +23,7 @@ Array<T>::~Array() {
 template <class T>
 void Array<T>::empty() {
 	if (m_data != nullptr) {
-		if (m_capacity > 1) {
+		if (m_length > 1) {
 			delete[] m_data;
 		}
 		else {
@@ -31,14 +33,14 @@ void Array<T>::empty() {
 		m_data = nullptr;
 	}
 
-	m_capacity = 0;
+	m_length = 0;
 }
 
 template <class T>
-void Array<T>::set_size(long capacity) {
-	T* temp = new T[capacity];
+void Array<T>::set_size(long length) {
+	T* temp = new T[length];
 
-	for (int i = 0; i < m_capacity; i++) {
+	for (int i = 0; i < m_length; i++) {
 		T val = m_data[i];
 		temp[i] = val;
 	}
@@ -46,7 +48,7 @@ void Array<T>::set_size(long capacity) {
 	empty();
 
 	m_data = temp;
-	m_capacity = capacity;
+	m_length = length;
 }
 
 template <class T>
@@ -56,7 +58,7 @@ T* Array<T>::m_get_data() {
 
 template <class T>
 T& Array<T>::operator[](long index) {
-	if (index >= 0 && index < m_capacity) {
+	if (index >= 0 && index < m_length) {
 		return m_data[index];
 	}
 	else {
@@ -68,13 +70,14 @@ template <class T>
 void Array<T>::operator=(Array<T>& right) {
 	empty();
 
-	m_capacity = right.GetCapacity();
+	//m_capacity = right.GetCapacity();
+	m_length = right.Length();
 
 	T* temp = right.m_get_data();
 
-	m_data = new T[m_capacity];
+	m_data = new T[m_length];
 
-	for (int i = 0; i < m_capacity; i++) {
+	for (int i = 0; i < m_length; i++) {
 		T val = temp[i];
 		m_data[i] = val;
 	}
@@ -85,11 +88,11 @@ void Array<T>::Add(T item) {
 	if (m_data == nullptr) {
 		m_data = new T[1];
 		m_data[0] = item;
-		m_capacity = 1;
+		m_length = 1;
 	}
 	else {
-		set_size(m_capacity + 1);
-		Put(item, m_capacity - 1);
+		set_size(m_length + 1);
+		Put(item, m_length - 1);
 	}
 }
 
@@ -103,7 +106,12 @@ void Array<T>::Put(T item, long index) {
 	this->operator[](index) = item;
 }
 
+//template <class T>
+//long Array<T>::GetCapacity() {
+//	return m_capacity;
+//}
+
 template <class T>
-long Array<T>::GetCapacity() {
-	return m_capacity;
+long Array<T>::Length() {
+	return m_length;
 }

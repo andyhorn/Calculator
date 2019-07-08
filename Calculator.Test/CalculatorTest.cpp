@@ -34,7 +34,7 @@ namespace CalculatorTest
 				Calculator calc;
 				results = calc.Primes(0, 10);
 
-				int length = results->GetCapacity();
+				int length = results->Length();
 
 				Assert::AreEqual(6, length);
 			}
@@ -57,7 +57,7 @@ namespace CalculatorTest
 				Calculator calc;
 				results = calc.SumOfSquares(0, 100);
 
-				int length = results->GetCapacity();
+				int length = results->Length();
 
 				Assert::AreEqual(2, length);
 			}
@@ -80,7 +80,7 @@ namespace CalculatorTest
 				Calculator calc;
 				results = calc.SquareOfSums(0, 100);
 
-				int length = results->GetCapacity();
+				int length = results->Length();
 
 				Assert::AreEqual(3, length);
 			}
