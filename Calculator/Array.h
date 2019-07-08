@@ -4,7 +4,6 @@ template <class T>
 class Array {
 private:
 	T* m_data;
-	//long m_capacity;
 	long m_length;
 
 	void empty();
@@ -23,6 +22,5 @@ public:
 	T& Get(long index);
 	void Put(T item, long index);
 
-	//long GetCapacity();
 	long Length();
 };

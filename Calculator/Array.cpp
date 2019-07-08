@@ -3,13 +3,11 @@
 template <class T>
 Array<T>::Array() {
 	m_data = nullptr;
-	//m_capacity = 0;
 	m_length = 0;
 }
 
 template <class T>
 Array<T>::Array(long length) {
-	//m_capacity = capacity;
 	m_length = length;
 
 	m_data = new T[length];
@@ -70,7 +68,6 @@ template <class T>
 void Array<T>::operator=(Array<T>& right) {
 	empty();
 
-	//m_capacity = right.GetCapacity();
 	m_length = right.Length();
 
 	T* temp = right.m_get_data();
@@ -105,11 +102,6 @@ template <class T>
 void Array<T>::Put(T item, long index) {
 	this->operator[](index) = item;
 }
-
-//template <class T>
-//long Array<T>::GetCapacity() {
-//	return m_capacity;
-//}
 
 template <class T>
 long Array<T>::Length() {

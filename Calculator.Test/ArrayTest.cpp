@@ -133,8 +133,6 @@ namespace CalculatorTest
 			try
 			{
 				Array<int> arr;
-				//int val = 10;
-				//arr.Add(val);
 				arr.Add(10);
 
 				int val = arr[0];
@@ -269,25 +267,6 @@ namespace CalculatorTest
 				Assert::Fail();
 			}
 		}
-
-		//TEST_METHOD(Array_RemoveTest) {
-		//	try {
-		//		int capacity = 10;
-		//		Array<int> arr(capacity);
-
-		//		for (int i = 0; i < capacity; i++)
-		//		{
-		//			arr[i] = i;
-		//		}
-
-		//		arr.Remove(9);
-
-		//		Assert::AreNotEqual(9, arr[9]);
-		//	}
-		//	catch (...) {
-		//		Assert::Fail();
-		//	}
-		//}
 
 		TEST_METHOD(Array_GetCapacityTest)
 		{
