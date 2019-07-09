@@ -11,11 +11,15 @@
 #include "Array.h"
 #include "Calculator.h"
 #include "Buffer.h"
+#include "Timer.h"
+
+const Time DEFAULT_UNIT = Time::MS;
 
 void printGui();
 void printError(const char* str);
 bool getRange(int& begin, int& end);
 void printArray(Array<int>* arr);
+void printTime(int time, Time unit);
 
 int main() {
 
@@ -23,6 +27,7 @@ int main() {
 	Array<int>* arr = nullptr;
 	Buffer buf;
 	Calculator calc;
+	Timer timer;
 
 	while (run)
 	{
@@ -34,35 +39,40 @@ int main() {
 		{
 			int selection = std::atoi(buf.GetBuffer()),
 				begin = 0,
-				end = 0;
+				end = 0,
+				time = 0;
 
 			switch (selection)
 			{
 			case 0:
 				if (getRange(begin, end)) {
+					timer.Start();
 					arr = calc.Primes(begin, end);
-					printArray(arr);
-					delete arr;
+					time = timer.Ms();
 				}
 				break;
 			case 1:
 				if (getRange(begin, end)) {
+					timer.Start();
 					arr = calc.SumOfSquares(begin, end);
-					printArray(arr);
-					delete arr;
+					time = timer.Ms();
 				}
 				break;
 			case 2:
 				if (getRange(begin, end)) {
+					timer.Start();
 					arr = calc.SquareOfSums(begin, end);
-					printArray(arr);
-					delete arr;
+					time = timer.Ms();
 				}
 				break;
 			default:
 				printError("Invalid selection");
-				break;
+				continue;
 			}
+
+			printArray(arr);
+			printTime(time, DEFAULT_UNIT);
+			delete arr;
 		}
 		else
 		{
@@ -129,4 +139,28 @@ void printArray(Array<int>* arr) {
 	}
 
 	std::cout << (*arr)[len - 1] << "]\n" << std::endl;
+}
+
+void printTime(int time, Time unit) {
+
+	const char* unit_string;
+
+	std::cout << "Elapsed time: " << time << " ";
+
+	switch (unit) {
+	case Time::H:
+		unit_string = "hours";
+		break;
+	case Time::M:
+		unit_string = "minutes";
+		break;
+	case Time::S:
+		unit_string = "seconds";
+		break;
+	case Time::MS:
+		unit_string = "milliseconds";
+		break;
+	}
+
+	std::cout << unit_string << std::endl;
 }
